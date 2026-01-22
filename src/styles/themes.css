@@ -1,0 +1,60 @@
+/* ---------- White Theme (Default) ---------- */
+:root[data-theme="white"] {
+  /* Backgrounds */
+  --theme-bg: #f6f8f9; /* soft off-white */
+  --theme-surface: #ffffff; /* clean cards */
+  --theme-border: #d9e1e6; /* cool neutral border */
+
+  /* Text */
+  --theme-text-primary: #1f2a37; /* charcoal */
+  --theme-text-secondary: #4b5d6b;
+  --theme-text-muted: #8a9aa6;
+
+  /* Primary (TEAL dominant) */
+  --theme-primary: #1bb3b1; /* teal */
+  --theme-primary-hover: #159b99;
+
+  /* Accent (ORANGE – attention only) */
+  --theme-accent: #ffa34d; /* soft orange */
+
+  /* Status */
+  --theme-success: #3fa67a;
+  --theme-danger: #d64545;
+
+  /* Highlight (teal-tinted, subtle) */
+  --theme-highlight-bg: rgba(27, 179, 177, 0.12);
+}
+
+/* ---------- Black Theme ---------- */
+:root[data-theme="black"] {
+  --theme-bg: #000000;
+  --theme-surface: #0f0f0f;
+  --theme-border: #262626;
+
+  --theme-text-primary: #ffffff;
+  --theme-text-secondary: #d1d5db;
+  --theme-text-muted: #9ca3af;
+
+  --theme-primary: #22c55e;
+  --theme-primary-hover: #16a34a;
+
+  --theme-danger: #f87171;
+  --theme-success: #4ade80;
+}
+
+/* ---------- Dark (Gray) Theme ---------- */
+:root[data-theme="dark"] {
+  --theme-bg: #0b0f19;
+  --theme-surface: #111827;
+  --theme-border: #1f2937;
+
+  --theme-text-primary: #f9fafb;
+  --theme-text-secondary: #9ca3af;
+  --theme-text-muted: #6b7280;
+
+  --theme-primary: #38bdf8;
+  --theme-primary-hover: #0ea5e9;
+
+  --theme-danger: #fb7185;
+  --theme-success: #4ade80;
+}
