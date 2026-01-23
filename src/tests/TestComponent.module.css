@@ -2,12 +2,10 @@
   width: min(720px, 92vw);
   padding: var(--space-2xl);
   margin: var(--space-2xl) auto;
-
   background-color: var(--color-surface);
   color: var(--color-text-primary);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-lg);
-
   box-shadow: var(--shadow-md);
 }
 
@@ -57,7 +55,7 @@
   padding: var(--space-sm);
   border-radius: var(--radius-sm);
   border: 1px solid var(--color-border);
-  /* background-color: var(--color-bg); */
+  background-color: var(--color-bg);
   color: var(--color-text-primary);
   font-size: var(--font-size-sm);
 }

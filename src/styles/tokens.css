@@ -1,28 +1,8 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap");
+
 :root {
-  /*---------- Colors ----------*/
-  --color-bg: var(--theme-bg);
-  --color-surface: var(--theme-surface);
-  --color-border: var(--theme-border);
-
-  /* Text */
-  --color-text-primary: var(--theme-text-primary);
-  --color-text-secondary: var(--theme-text-secondary);
-  --color-text-muted: var(--theme-text-muted);
-
-  /* Accent (secondary emphasis) */
-  --color-accent: var(--theme-accent);
-
-  /* Highlight (subtle background emphasis) */
-  --color-highlight-bg: var(--theme-highlight-bg);
-
-  /* Brand */
-  --color-primary: var(--theme-primary);
-  --color-primary-hover: var(--theme-primary-hover);
-
-  /* Status */
-  --color-danger: var(--theme-danger);
-  --color-success: var(--theme-success);
-
   /*---------- Spacing ----------*/
   --space-2xs: 4px;
   --space-xs: 8px;
@@ -40,8 +20,7 @@
   --radius-pill: 9999px;
 
   /*---------- Typography ----------*/
-  --font-family-base:
-    system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-family-base: "Poppins", system-ui, Roboto, sans-serif;
 
   --font-size-xs: 0.75rem;
   --font-size-sm: 0.876rem;
@@ -49,6 +28,18 @@
   --font-size-lg: 1.25rem;
   --font-size-xl: 1.5rem;
   --font-size-2xl: 2rem;
+
+  /* ---------- Font Weights ---------- */
+  --font-weight-thin: 300; /* subtle headings, auth titles */
+  --font-weight-regular: 400; /* body text, inputs */
+  --font-weight-medium: 500; /* labels, buttons */
+  --font-weight-semibold: 600; /* section titles */
+  --font-weight-bold: 700; /* strong emphasis */
+
+  /* ---------- Letter Spacing ---------- */
+  --letter-spacing-tight: -0.01em; /* large headings */
+  --letter-spacing-normal: 0;
+  --letter-spacing-wide: 0.02em; /* small labels, buttons */
 
   --line-height-tight: 1.25;
   --line-height-normal: 1.5;

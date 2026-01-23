@@ -1,9 +1,9 @@
-import { useTheme } from '../shared/hooks/useTheme';
+import { useTheme } from '../app/context/ThemeProvider';
 import styles from './TestComponent.module.css';
 
 
 export default function TestComponent() {
-    const { theme, setTheme } = useTheme();
+    const { setTheme } = useTheme();
 
     return (
         <div className={styles.card}>
@@ -113,11 +113,11 @@ export default function TestComponent() {
             {/* Actions */}
             <div className={styles.actions}>
                 <button className={styles.button} onClick={() => setTheme("white")}>
-                    White
+                    Light
                 </button>
-                <button className={styles.button} onClick={() => setTheme("black")}>
+                {/* <button className={styles.button} onClick={() => setTheme("black")}>
                     Black
-                </button>
+                </button> */}
                 <button className={styles.button} onClick={() => setTheme("dark")}>
                     Dark
                 </button>
