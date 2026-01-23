@@ -2,6 +2,8 @@ import { LOGIN_CONFIG } from '../../shared/constants/AuthConfig';
 import Input from '../../shared/ui/Input/Input';
 import styles from './login.module.css';
 
+
+
 export default function LoginPage() {
 
     return (
@@ -14,7 +16,12 @@ export default function LoginPage() {
 
                 {/*LogIn Form*/}
                 <section className={styles.login__form}>
-                    <h2 style={{ marginBottom: "var(--space-sm)", fontWeight: "var(--font-weight-thin)" }}>Log in</h2>
+                    <div style={{ marginBottom: "var(--space-sm)" }}>
+                        <h1 style={{ fontWeight: "var(--font-weight-thin)", fontSize: "var( --font-size-2xl)" }}>Log in</h1>
+                        <p style={{ fontWeight: "var(--font-weight-thin)", fontSize: "var( --font-size-xs)" }}>
+                            Dont have account? <span role="button" className={styles.signup__button}>Sign up</span>
+                        </p>
+                    </div>
                     <form className={styles.form}>
                         {LOGIN_CONFIG.map((field) => (
                             <Input
@@ -29,7 +36,7 @@ export default function LoginPage() {
                         ))}
                         <div className={styles.fieldInline}>
                             <input type="checkbox" id="autoBid" />
-                            <label htmlFor="autoBid">Enable auto-bid</label>
+                            <label htmlFor="autoBid">Remember me</label>
                         </div>
 
                         <button type="submit" className={styles.button}>
