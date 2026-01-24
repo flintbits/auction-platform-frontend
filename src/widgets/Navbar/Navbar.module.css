@@ -5,8 +5,20 @@
   justify-content: space-between;
   align-items: center;
   padding: var(--space-lg);
+  background-color: var(--color-surface);
   border-bottom: 1px solid var(--color-border);
   box-shadow: var(--shadow-md);
+}
+
+.theme__Button {
+  background-color: "var(--color-bg)";
+  border: "1px solid var(--color-border)";
+  border-radius: "50%";
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  padding: var(--space-xs);
 }
 
 .endContent {

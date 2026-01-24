@@ -1,4 +1,4 @@
-import styles from './button.module.css'
+import styles from './button.module.css';
 
 export type ButtonSize = "sm" | "md" | "lg"
 
@@ -18,19 +18,17 @@ const SIZE_MAP: Record<ButtonSize, React.CSSProperties> = {
     sm: {
         padding: "var(--space-xs) var(--space-sm)",
         fontSize: "var(--font-size-xs)",
-        // borderRadius: "var(--radius-sm)",
     },
     md: {
         padding: "var(--space-sm) var(--space-md)",
         fontSize: "var(--font-size-sm)",
-        // borderRadius: "var(--radius-md)",
     },
     lg: {
         padding: "var(--space-md) var(--space-lg)",
         fontSize: "var(--font-size-md)",
-        // borderRadius: "var(--radius-lg)",
     },
 };
+
 
 const VARIANT_MAP: Record<
     ButtonVariant,

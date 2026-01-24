@@ -1,8 +1,8 @@
 /* ---------- White Theme (Default) ---------- */
 :root[data-theme="white"] {
-  --theme-bg: #f6f8f9;
-  --theme-surface: #ffffff;
-  --theme-border: #d9e1e6;
+  --theme-bg: #e3e8ec;
+  --theme-surface: #eef2f5;
+  --theme-border: #bcc7cf;
 
   --theme-text-primary: #1f2a37;
   --theme-text-secondary: #4b5d6b;
@@ -11,7 +11,7 @@
   --theme-primary: #1bb3b1;
   --theme-primary-hover: #159b99;
 
-  --theme-accent: #ffa34d;
+  --theme-accent: #e8822a;
 
   --theme-success: #3fa67a;
   --theme-danger: #d64545;
