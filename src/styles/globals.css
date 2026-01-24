@@ -37,11 +37,16 @@ h5,
 h6 {
   font-weight: var(--font-weight-medium);
 }
-
-p,
 label {
   margin: 0;
   font-weight: var(--font-weight-regular);
+  letter-spacing: var(--letter-spacing-wide);
+}
+
+p {
+  margin: 0;
+  font-weight: var(--font-weight-thin);
+  font-size: var(--font-size-xs);
   letter-spacing: var(--letter-spacing-wide);
 }
 
@@ -53,7 +58,6 @@ a {
 
 /* ---------- Buttons ---------- */
 button {
-  font-family: inherit;
   border: none;
   background: none;
   cursor: pointer;

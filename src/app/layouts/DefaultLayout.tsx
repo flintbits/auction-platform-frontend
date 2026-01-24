@@ -1,4 +1,4 @@
-import NavBar from '../../widgets/Navbar'
+import NavBar from '../../widgets/Navbar/Navbar'
 import { Outlet } from '@tanstack/react-router'
 
 export default function DefaultLayout() {
