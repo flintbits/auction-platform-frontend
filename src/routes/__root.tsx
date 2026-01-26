@@ -1,14 +1,12 @@
+import { Outlet, createRootRoute } from '@tanstack/react-router'
 import * as React from 'react'
-import { Link, Outlet, createRootRoute } from '@tanstack/react-router'
+import NotFound from '../shared/ui/not found/NotFound'
 
 export const Route = createRootRoute({
     component: RootComponent,
     notFoundComponent() {
         return (
-            <div>
-                <p>Not found!hfefshsffkubv</p>
-                <Link to="/">Go home</Link>
-            </div>
+            <NotFound />
         )
 
     },

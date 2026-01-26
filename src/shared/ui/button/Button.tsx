@@ -41,7 +41,7 @@ const VARIANT_MAP: Record<
     },
     secondary: {
         backgroundColor: "var(--color-accent)",
-        color: "#111827",
+        color: "var(--color-text-primary)",
     },
     danger: {
         backgroundColor: "var(--color-danger)",
@@ -49,7 +49,7 @@ const VARIANT_MAP: Record<
     },
     outline: {
         border: "1px solid var(--color-primary)",
-        color: "#fff",
+        color: "var(--color-text-primary)",
     }
 };
 

@@ -9,7 +9,9 @@ export default function NavBar() {
     return (
         <nav className={styles.navbar}>
             {/*logo*/}
-            <section></section>
+            <section>
+                <p>Placeholder name</p>
+            </section>
 
             {/*middle section*/}
             <section></section>

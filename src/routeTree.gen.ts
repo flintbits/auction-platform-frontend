@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as WithNavbarRouteImport } from './routes/_with-navbar'
 import { Route as AuthRouteImport } from './routes/_auth'
 import { Route as WithNavbarIndexRouteImport } from './routes/_with-navbar/index'
+import { Route as WithNavbarAccountsetupRouteImport } from './routes/_with-navbar/accountsetup'
 import { Route as AuthSignupRouteImport } from './routes/_auth/signup'
 import { Route as AuthLoginRouteImport } from './routes/_auth/login'
 
@@ -26,6 +27,11 @@ const AuthRoute = AuthRouteImport.update({
 const WithNavbarIndexRoute = WithNavbarIndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => WithNavbarRoute,
+} as any)
+const WithNavbarAccountsetupRoute = WithNavbarAccountsetupRouteImport.update({
+  id: '/accountsetup',
+  path: '/accountsetup',
   getParentRoute: () => WithNavbarRoute,
 } as any)
 const AuthSignupRoute = AuthSignupRouteImport.update({
@@ -43,11 +49,13 @@ export interface FileRoutesByFullPath {
   '/': typeof WithNavbarIndexRoute
   '/login': typeof AuthLoginRoute
   '/signup': typeof AuthSignupRoute
+  '/accountsetup': typeof WithNavbarAccountsetupRoute
 }
 export interface FileRoutesByTo {
   '/': typeof WithNavbarIndexRoute
   '/login': typeof AuthLoginRoute
   '/signup': typeof AuthSignupRoute
+  '/accountsetup': typeof WithNavbarAccountsetupRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -55,19 +63,21 @@ export interface FileRoutesById {
   '/_with-navbar': typeof WithNavbarRouteWithChildren
   '/_auth/login': typeof AuthLoginRoute
   '/_auth/signup': typeof AuthSignupRoute
+  '/_with-navbar/accountsetup': typeof WithNavbarAccountsetupRoute
   '/_with-navbar/': typeof WithNavbarIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/login' | '/signup'
+  fullPaths: '/' | '/login' | '/signup' | '/accountsetup'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/login' | '/signup'
+  to: '/' | '/login' | '/signup' | '/accountsetup'
   id:
     | '__root__'
     | '/_auth'
     | '/_with-navbar'
     | '/_auth/login'
     | '/_auth/signup'
+    | '/_with-navbar/accountsetup'
     | '/_with-navbar/'
   fileRoutesById: FileRoutesById
 }
@@ -97,6 +107,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof WithNavbarIndexRouteImport
+      parentRoute: typeof WithNavbarRoute
+    }
+    '/_with-navbar/accountsetup': {
+      id: '/_with-navbar/accountsetup'
+      path: '/accountsetup'
+      fullPath: '/accountsetup'
+      preLoaderRoute: typeof WithNavbarAccountsetupRouteImport
       parentRoute: typeof WithNavbarRoute
     }
     '/_auth/signup': {
@@ -129,10 +146,12 @@ const AuthRouteChildren: AuthRouteChildren = {
 const AuthRouteWithChildren = AuthRoute._addFileChildren(AuthRouteChildren)
 
 interface WithNavbarRouteChildren {
+  WithNavbarAccountsetupRoute: typeof WithNavbarAccountsetupRoute
   WithNavbarIndexRoute: typeof WithNavbarIndexRoute
 }
 
 const WithNavbarRouteChildren: WithNavbarRouteChildren = {
+  WithNavbarAccountsetupRoute: WithNavbarAccountsetupRoute,
   WithNavbarIndexRoute: WithNavbarIndexRoute,
 }
 

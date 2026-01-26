@@ -1,9 +1,9 @@
 import { Link } from '@tanstack/react-router';
+import { useState } from 'react';
 import { SIGNUP_CONFIG } from '../../shared/constants/AuthConfig';
+import Button from '../../shared/ui/button/Button';
 import Input from '../../shared/ui/Input/Input';
 import styles from './signup.module.css';
-import Button from '../../shared/ui/button/Button';
-import { useState } from 'react';
 
 
 type UserRole = "organizer" | "team_admin";
