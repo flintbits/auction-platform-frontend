@@ -1,12 +1,53 @@
-import { Link } from '@tanstack/react-router';
+import { Link, useNavigate } from '@tanstack/react-router';
+import { useState } from 'react';
+import { login } from '../../shared/api/auth.service';
 import { LOGIN_CONFIG } from '../../shared/constants/AuthConfig';
+import Button from '../../shared/ui/button/Button';
 import Input from '../../shared/ui/Input/Input';
 import styles from './login.module.css';
-import Button from '../../shared/ui/button/Button';
 
+type loginData = {
+    email: string;
+    password: string;
+}
 
 
 export default function LoginPage() {
+    const navigate = useNavigate();
+
+    const [loginData, setLoginData] = useState<loginData>({
+        email: "",
+        password: ""
+    })
+
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState<string | null>(null);
+
+    async function hadleChange(e: React.ChangeEvent<HTMLInputElement>) {
+        setLoginData((prev) => ({
+            ...prev,
+            [e.target.name]: e.target.value
+        }))
+    }
+
+    async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+        e.preventDefault();
+        setError(null);
+        setLoading(true);
+
+        try {
+            const user = await login(loginData.email, loginData.password);
+            if (user.is_onboarded) {
+                navigate({ to: "/dashboard" })
+            } else {
+                navigate({ to: '/onboarding' })
+            }
+        } catch (err: any) {
+            setError(err.message || "Login Failed");
+        } finally {
+            setLoading(false)
+        }
+    }
 
     return (
         <div className={styles.login}>
@@ -24,13 +65,15 @@ export default function LoginPage() {
                             Dont have account? <Link to={"/signup"} className={styles.route__button}>Sign up</Link >
                         </p>
                     </div>
-                    <form className={styles.form}>
+                    <form className={styles.form} onSubmit={handleSubmit}>
                         {LOGIN_CONFIG.map((field) => (
                             <Input
                                 id={field.id}
                                 label={field.label}
                                 name={field.name}
                                 type={field.type}
+                                value={loginData[field.name as keyof typeof loginData]}
+                                onChange={hadleChange}
                                 placeholder={field.placeholder}
                                 required={field.required}
                                 error=''
