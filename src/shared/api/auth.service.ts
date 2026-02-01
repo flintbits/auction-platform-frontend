@@ -1,5 +1,6 @@
-import { setAuthState } from "../../auth/authStore";
-import { apiFetch, clearAccessToken, setAccessToken } from "./client";
+// import { setAuthState } from "../../auth/authStore";
+import { authStore } from "../../features/auth/auth.store";
+import { apiFetch } from "./client";
 
 type LoginResponse = {
   token: string,
@@ -12,26 +13,22 @@ type LoginResponse = {
 }
 
 export async function login(email: string, password: string) {
+  console.log("code is here")
   const data: LoginResponse = await apiFetch("/auth/login", {
     method: "POST",
     body: JSON.stringify({ email, password })
   });
 
-  setAccessToken(data.token);
-
-  setAuthState({
-    isAuthenticated: true,
-    isOnboarded: data.user.is_onboarded ?? false,
-    user: data.user
-  })
+  authStore.login(data.user)
 
   return data.user
 }
 
 //export async function register() {}
 
-export function logout() {
-  clearAccessToken();
+export async function logout() {
+  await apiFetch("/auth/logout", { method: "POST" });
+  authStore.logout()
 }
 
 

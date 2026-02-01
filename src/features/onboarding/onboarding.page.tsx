@@ -1,7 +1,7 @@
-import { getAuthState } from "../../auth/authStore"
+import { authStore } from "../auth/auth.store"
 
-export default function OnboardingPage() {
-  const { user } = getAuthState()
+export default function Onboardingpage() {
+  const { user } = authStore
 
   if (user?.role === "ORGANIZER") {
     return <div>Organizer onboarding form</div>

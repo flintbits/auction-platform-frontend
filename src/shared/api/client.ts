@@ -1,33 +1,35 @@
-const API_BASE_URL = "http://localhost:3000";
+import { authStore } from "../../features/auth/auth.store";
 
-let accessToken: string | null = null;
-
-export function setAccessToken(token: string) {
-  accessToken = token;
-}
-
-export function clearAccessToken() {
-  accessToken = null;
-}
+const API_BASE_URL = import.meta.env.VITE_API_URL;
 
 export async function apiFetch(endpoint: string, options: RequestInit = {}) {
-  const headers = new Headers(options.headers || {});
 
-  headers.set("Content-Type", "application/json");
+  console.log("code is here now")
 
-  if (accessToken) {
-    headers.set("Authorization", `Bearer ${accessToken}`);
+  const headers: HeadersInit = {
+    ...(options.body ? { "Content-Type": "application/json" } : {}),
+    ...options.headers,
   }
 
   const response = await fetch(`${API_BASE_URL}${endpoint}`, {
     ...options,
+    credentials: "include",
     headers,
   })
 
-  if (!response.ok) {
-    const error = await response.json().catch(() => ({}))
-    throw new Error(error.error || "API request failed")
+  if (response.status === 401) {
+    authStore.logout();
+    throw new Error("Unauthorized");
   }
 
-  return response.json();
+  if (!response.ok) {
+    let messsage = "API request failed"
+    try {
+      const error = await response.json().catch(() => ({}))
+      messsage = error.error || messsage
+    } catch { }
+    throw new Error(messsage)
+  }
+
+  return response.status === 204 ? null : response.json();
 }

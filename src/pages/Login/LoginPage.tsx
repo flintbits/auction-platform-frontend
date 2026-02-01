@@ -37,6 +37,7 @@ export default function LoginPage() {
 
         try {
             const user = await login(loginData.email, loginData.password);
+            console.log("handleSubmit", { user })
             if (user.is_onboarded) {
                 navigate({ to: "/dashboard" })
             } else {
