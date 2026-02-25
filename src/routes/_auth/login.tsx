@@ -1,19 +1,15 @@
 import { createFileRoute, redirect } from '@tanstack/react-router';
-import { authStore } from '../../features/auth/auth.store';
-import LoginPage from '../../pages/Login/LoginPage';
+import { useAuthStore } from '../../app/store/auth/auth.store';
+import LoginPage from '../../pages/login/LoginPage';
 
 export const Route = createFileRoute('/_auth/login')({
   beforeLoad: async () => {
-    console.log("LOGIN beforeLoad running");
+    const { isAuthenticated, isOnboarded } = useAuthStore.getState();
 
-    await authStore.init();
-
-    console.log("Auth state:", authStore.snapshot);
-
-    if (!authStore.isAuthenticated) {
+    if (!isAuthenticated) {
       return;
     }
-    if (!authStore.isOnboarded) {
+    if (!isOnboarded) {
       throw redirect({ to: "/onboarding" });
     }
     throw redirect({ to: "/dashboard" });

@@ -1,11 +1,8 @@
-import { authStore } from "../../features/auth/auth.store";
+import { useAuthStore } from "../../app/store/auth/auth.store";
 
 const API_BASE_URL = import.meta.env.VITE_API_URL;
 
 export async function apiFetch(endpoint: string, options: RequestInit = {}) {
-
-  console.log("code is here now")
-
   const headers: HeadersInit = {
     ...(options.body ? { "Content-Type": "application/json" } : {}),
     ...options.headers,
@@ -18,7 +15,7 @@ export async function apiFetch(endpoint: string, options: RequestInit = {}) {
   })
 
   if (response.status === 401) {
-    authStore.logout();
+    useAuthStore.getState().logout();
     throw new Error("Unauthorized");
   }
 

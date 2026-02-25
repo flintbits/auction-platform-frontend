@@ -36,11 +36,6 @@ class AuthStore {
 
     try {
       const user: User = await apiFetch("/auth/me")
-
-      // if (!res.ok) throw new Error("Unauthenticated");
-
-      // const user: User = await res.json();
-
       this.state = {
         user,
         isAuthenticated: true,

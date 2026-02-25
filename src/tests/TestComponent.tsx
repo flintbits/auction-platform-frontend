@@ -1,4 +1,4 @@
-import { useTheme } from '../app/context/ThemeProvider';
+import { useTheme } from '../app/providers/Theme';
 import styles from './TestComponent.module.css';
 
 

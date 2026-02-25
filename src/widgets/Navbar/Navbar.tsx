@@ -1,11 +1,32 @@
-import { Link } from "@tanstack/react-router";
+import { useNavigate } from "@tanstack/react-router";
 import { Moon, Sun } from "lucide-react";
-import { useTheme } from "../../app/context/ThemeProvider";
+import { useTheme } from "../../app/providers/Theme";
+import { useAuthStore } from "../../app/store/auth/auth.store";
+import { logout } from "../../shared/api/auth.service";
 import Button from "../../shared/ui/button/Button";
 import styles from "./Navbar.module.css";
 
+type NavIntent = "login" | "logout" | "signup";
+
 export default function NavBar() {
+    const navigate = useNavigate()
+    const isAuthenticated = useAuthStore(s => s.isAuthenticated);
     const { theme, setTheme } = useTheme();
+
+    const handleNavAuthButtons = async (intent: NavIntent) => {
+        switch (intent) {
+            case "login":
+                navigate({ to: "/login" });
+                break;
+            case "logout":
+                await logout()
+                navigate({ to: "/" });
+                break;
+            case "signup":
+                navigate({ to: "/signup" });
+                break;
+        }
+    }
     return (
         <nav className={styles.navbar}>
             {/*logo*/}
@@ -33,17 +54,19 @@ export default function NavBar() {
                         onClick={() => setTheme('white')} />
                 </div>
                 <section>
-                    <Link to="/login">
-                        <Button size="sm" variant="primary" type="button">
-                            Log in
-                        </Button>
-                    </Link>
+                    {isAuthenticated ?
+                        <Button size="sm" variant="primary" type="button" onClick={() => handleNavAuthButtons("logout")}>
+                            Log out
+                        </Button> :
+                        <>
+                            <Button size="sm" variant="primary" type="button" onClick={() => handleNavAuthButtons("login")}>
+                                Log in
+                            </Button>
 
-                    <Link to="/signup">
-                        <Button size="sm" variant="primary" type="button">
-                            Sign up
-                        </Button>
-                    </Link>
+                            <Button size="sm" variant="primary" type="button" onClick={() => handleNavAuthButtons("signup")}>
+                                Sign up
+                            </Button>
+                        </>}
                 </section>
             </section>
         </nav>

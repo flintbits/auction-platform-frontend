@@ -1,7 +1,7 @@
-import { authStore } from "../auth/auth.store"
+import { useAuthStore } from "../../app/store/auth/auth.store"
 
 export default function Onboardingpage() {
-  const { user } = authStore
+  const user = useAuthStore(state => state.user)
 
   if (user?.role === "ORGANIZER") {
     return <div>Organizer onboarding form</div>

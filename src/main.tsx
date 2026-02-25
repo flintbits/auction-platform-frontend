@@ -1,17 +1,18 @@
 import { createRouter, RouterProvider } from '@tanstack/react-router';
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
-import { ThemeProvider } from './app/context/ThemeProvider';
 import ErrorBoundary from './app/ErrorBoundary';
-import { authStore } from './features/auth/auth.store';
+import { ThemeProvider } from './app/providers/Theme';
+import { useAuthStore } from './app/store/auth/auth.store';
+import './app/styles/globals.css';
+import './app/styles/themes.css';
+import './app/styles/tokens.css';
 import { routeTree } from './routeTree.gen';
-import './styles/globals.css';
-import './styles/themes.css';
-import './styles/tokens.css';
+
 
 
 async function bootstrap() {
-  await authStore.init()
+  await useAuthStore.getState().init()
 
   const router = createRouter({ routeTree })
 
