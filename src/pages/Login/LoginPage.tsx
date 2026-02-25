@@ -2,7 +2,7 @@ import { Link, useNavigate } from '@tanstack/react-router';
 import { useState } from 'react';
 import { login } from '../../shared/api/auth.service';
 import { LOGIN_CONFIG } from '../../shared/constants/AuthConfig';
-import Button from '../../shared/ui/button/Button';
+import Button from '../../shared/ui/Button/Button';
 import Input from '../../shared/ui/Input/Input';
 import styles from './login.module.css';
 

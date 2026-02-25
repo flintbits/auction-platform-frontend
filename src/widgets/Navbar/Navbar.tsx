@@ -3,7 +3,7 @@ import { Moon, Sun } from "lucide-react";
 import { useTheme } from "../../app/providers/Theme";
 import { useAuthStore } from "../../app/store/auth/auth.store";
 import { logout } from "../../shared/api/auth.service";
-import Button from "../../shared/ui/button/Button";
+import Button from "../../shared/ui/Button/Button";
 import styles from "./Navbar.module.css";
 
 type NavIntent = "login" | "logout" | "signup";
