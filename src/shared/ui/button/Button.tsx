@@ -53,6 +53,11 @@ const VARIANT_MAP: Record<
     }
 };
 
+console.log(
+    getComputedStyle(document.documentElement)
+        .getPropertyValue('--color-primary')
+)
+
 export default function Button({ children, size = "md", variant = "primary", disabled = false, block = false, type = "button", onClick }: ButtonProps) {
 
     const sizeStyles = SIZE_MAP[size]

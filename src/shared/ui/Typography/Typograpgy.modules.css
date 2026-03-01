@@ -1,0 +1,15 @@
+.typography--bold {
+  font-weight: var(--font-weight-bold);
+}
+
+.typography--medium {
+  font-weight: var(--font-weight-medium);
+}
+
+.typography--normal {
+  font-weight: var(--font-weight-normal);
+}
+
+.typography--light {
+  font-weight: var(--font-weight-light);
+}

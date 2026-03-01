@@ -2,7 +2,7 @@ import { Link, useNavigate } from '@tanstack/react-router';
 import { useState } from 'react';
 import { login } from '../../shared/api/auth.service';
 import { LOGIN_CONFIG } from '../../shared/constants/AuthConfig';
-import Button from '../../shared/ui/button/Button';
+import Button from '../../shared/ui/Button/Button';
 import Input from '../../shared/ui/Input/Input';
 import styles from './login.module.css';
 
@@ -20,8 +20,8 @@ export default function LoginPage() {
         password: ""
     })
 
-    const [loading, setLoading] = useState(false);
-    const [error, setError] = useState<string | null>(null);
+    // const [loading, setLoading] = useState(false);
+    // const [error, setError] = useState<string | null>(null);
 
     async function hadleChange(e: React.ChangeEvent<HTMLInputElement>) {
         setLoginData((prev) => ({
@@ -32,8 +32,8 @@ export default function LoginPage() {
 
     async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
         e.preventDefault();
-        setError(null);
-        setLoading(true);
+        // setError(null);
+        // setLoading(true);
 
         try {
             const user = await login(loginData.email, loginData.password);
@@ -43,9 +43,9 @@ export default function LoginPage() {
                 navigate({ to: '/onboarding' })
             }
         } catch (err: any) {
-            setError(err.message || "Login Failed");
+            // setError(err.message || "Login Failed");
         } finally {
-            setLoading(false)
+            // setLoading(false)
         }
     }
 
