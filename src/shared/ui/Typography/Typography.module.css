@@ -1,0 +1,35 @@
+.typography {
+  margin: 0;
+}
+
+.typography-weight--bold {
+  font-weight: var(--font-weight-bold);
+}
+
+.typography-weight--medium {
+  font-weight: var(--font-weight-medium);
+}
+
+.typography-weight--normal {
+  font-weight: var(--font-weight-normal);
+}
+
+.typography-weight--light {
+  font-weight: var(--font-weight-light);
+}
+
+.typography-size--text-base {
+  font-size: var(--font-size-text-base);
+}
+
+.typography-size--text-md {
+  font-size: var(--font-size-text-md);
+}
+
+.typography-size--text-sm {
+  font-size: var(--font-size-text-sm);
+}
+
+.typography-size--text-xs {
+  font-size: var(--font-size-text-xs);
+}

@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { login } from '../../shared/api/auth.service';
 import { LOGIN_CONFIG } from '../../shared/constants/AuthConfig';
 import Button from '../../shared/ui/Button/Button';
-import Input from '../../shared/ui/Input/Input';
+import Input from '../../shared/ui/TextField/TextField';
 import styles from './login.module.css';
 
 type loginData = {

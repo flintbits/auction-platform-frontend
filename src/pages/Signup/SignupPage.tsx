@@ -2,7 +2,7 @@ import { Link } from '@tanstack/react-router';
 import { useState } from 'react';
 import { SIGNUP_CONFIG } from '../../shared/constants/AuthConfig';
 import Button from '../../shared/ui/Button/Button';
-import Input from '../../shared/ui/Input/Input';
+import Input from '../../shared/ui/TextField/TextField';
 import styles from './signup.module.css';
 
 
