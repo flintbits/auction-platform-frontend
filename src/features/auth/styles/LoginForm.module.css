@@ -1,0 +1,10 @@
+.authcontainer {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-20);
+}
+
+.routelink {
+  color: var(--color-accent);
+  text-decoration: none;
+}

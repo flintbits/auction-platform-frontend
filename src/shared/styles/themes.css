@@ -1,22 +1,28 @@
 /* ---------- White Theme (Default) ---------- */
 :root[data-theme="white"] {
-  --theme-bg: #e8e9ea;
-  --theme-surface: #e9e9e9;
-  --theme-border: #cdd0d3;
+  /* Background System */
+  --theme-bg: #f5f5f5;
+  --theme-surface: #d3e2de; /* this */
+  --theme-border: #e2e2e2;
 
-  --theme-text-primary: #1f2a37;
-  --theme-text-secondary: #4b5d6b;
-  --theme-text-muted: #8a9aa6;
+  /* Typography */
+  --theme-text-primary: #172726;
+  --theme-text-secondary: #243f3d;
+  --theme-text-muted: #476664;
 
-  --theme-primary: #1bb3b1;
-  --theme-primary-hover: #159b99;
+  /* Primary Interaction (Neutral Black) */
+  /* --theme-primary: #111111;
+  --theme-primary-hover: #000000; */
 
-  --theme-accent: #e8822a;
+  /* Accent (High Contrast Neutral) */
+  --theme-accent: #f95831;
 
+  /* Status Colors (unchanged as requested) */
   --theme-success: #3fa67a;
   --theme-danger: #d64545;
 
-  --theme-highlight-bg: rgba(27, 179, 177, 0.12);
+  /* Highlight */
+  --theme-highlight-bg: rgba(0, 0, 0, 0.06);
 
   --color-bg: var(--theme-bg);
   --color-surface: var(--theme-surface);
@@ -26,10 +32,11 @@
   --color-text-secondary: var(--theme-text-secondary);
   --color-text-muted: var(--theme-text-muted);
 
-  --color-primary: var(--theme-primary);
-  --color-primary-hover: var(--theme-primary-hover);
+  /* --color-primary: var(--theme-primary);
+  --color-primary-hover: var(--theme-primary-hover); */
 
   --color-accent: var(--theme-accent);
+
   --color-highlight-bg: var(--theme-highlight-bg);
 
   --color-success: var(--theme-success);
@@ -38,23 +45,29 @@
 
 /* ---------- Dark (Gray) Theme ---------- */
 :root[data-theme="dark"] {
-  --theme-bg: #0f1418;
-  --theme-surface: #161c21;
-  --theme-border: #27313a;
+  /* Background System */
+  --theme-bg: #1c1c1c;
+  --theme-surface: #1d1d1d;
+  --theme-border: #262626;
 
-  --theme-text-primary: #e6edf3;
-  --theme-text-secondary: #b6c2cc;
-  --theme-text-muted: #7f8b96;
+  /* Typography */
+  --theme-text-primary: #f2f2f2;
+  --theme-text-secondary: #bfbfbf;
+  --theme-text-muted: #8c8c8c;
 
-  --theme-primary: #2fc6c3;
-  --theme-primary-hover: #27b0ad;
+  /* Primary Interaction (Neutral White) */
+  --theme-primary: #ffffff;
+  --theme-primary-hover: #e6e6e6;
 
-  --theme-accent: #ffad5c;
+  /* Accent (High Contrast Neutral) */
+  --theme-accent: #ffffff;
 
+  /* Status Colors (unchanged) */
   --theme-success: #4cc38a;
   --theme-danger: #ff6b6b;
 
-  --theme-highlight-bg: rgba(47, 198, 195, 0.18);
+  /* Highlight */
+  --theme-highlight-bg: rgba(255, 255, 255, 0.08);
 
   --color-bg: var(--theme-bg);
   --color-surface: var(--theme-surface);

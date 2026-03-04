@@ -1,4 +1,4 @@
-import type { AuthState } from "../../../features/auth/auth.types";
+import type { AuthState } from "../../../features/auth/types/auth.types";
 
 export const selectIsAuthenticated = (s: AuthState) => s.isAuthenticated;
 

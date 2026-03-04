@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import type { AuthState, User } from "../../../features/auth/auth.types";
+import type { AuthState, User } from "../../../features/auth/types/auth.types";
 import { apiFetch } from "../../../shared/api/client";
 
 type AuthStore = AuthState & {

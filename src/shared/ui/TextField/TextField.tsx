@@ -6,7 +6,7 @@ import styles from './TextField.module.css';
 
 interface TextFieldProps extends React.InputHTMLAttributes<HTMLInputElement> {
     label?: string
-    error: boolean
+    error?: boolean
     helperText?: string
     LeftIcon?: LucideIcon
     RightIcon?: LucideIcon
@@ -15,10 +15,10 @@ interface TextFieldProps extends React.InputHTMLAttributes<HTMLInputElement> {
 }
 
 
-export const TextField = forwardRef<HTMLInputElement, TextFieldProps>(({ id, label, error = false, helperText, LeftIcon, RightIcon, className, ...props }, ref) => {
+export const TextField = forwardRef<HTMLInputElement, TextFieldProps>(({ id, label, error = false, helperText, LeftIcon, RightIcon, style, className, ...props }, ref) => {
 
     return (
-        <section className={styles.textArea}>
+        <section className={styles.textArea} style={style}>
             {label && <label htmlFor="email">{label}</label>}
 
             <div className={`${styles.inputContainer} ${error ? styles.error : ""}`}>
@@ -40,7 +40,7 @@ export const TextField = forwardRef<HTMLInputElement, TextFieldProps>(({ id, lab
             </div>
 
             {error && <Typography className={error ? styles.helperError : ""} as="p" weight="light" size="text-xs">{helperText}</Typography>}
-        </section>
+        </section >
     )
 })
 
