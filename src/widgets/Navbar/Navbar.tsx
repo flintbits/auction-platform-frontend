@@ -1,74 +1,68 @@
-import { Button } from "@shared/ui/Button/Button";
-import { useNavigate } from "@tanstack/react-router";
-import { Moon, Sun } from "lucide-react";
-import { useTheme } from "../../app/providers/Theme";
-import { useAuthStore } from "../../app/store/auth/auth.store";
-import { logout } from "../../shared/api/auth.service";
-import styles from "./Navbar.module.css";
-
-type NavIntent = "login" | "logout" | "signup";
+import { Button } from "@shared/ui/Button/Button"
+import { useNavigate } from "@tanstack/react-router"
+import { logout } from "../../shared/api/auth.service"
+import styles from "./Navbar.module.css"
 
 export default function NavBar() {
     const navigate = useNavigate()
-    const isAuthenticated = useAuthStore(s => s.isAuthenticated);
-    const { theme, setTheme } = useTheme();
+    // const isAuthenticated = useAuthStore((s) => s.isAuthenticated)
 
-    const handleNavAuthButtons = async (intent: NavIntent) => {
-        switch (intent) {
-            case "login":
-                navigate({ to: "/login" });
-                break;
-            case "logout":
-                await logout()
-                navigate({ to: "/" });
-                break;
-            case "signup":
-                navigate({ to: "/signup" });
-                break;
-        }
+    const isAuthenticated = false
+
+    const handleLogout = async () => {
+        await logout()
+        navigate({ to: "/" })
     }
+
     return (
         <nav className={styles.navbar}>
-            {/*logo*/}
-            <section>
-                <p>Placeholder name</p>
-            </section>
-
-            {/*middle section*/}
-            <section></section>
-
-            {/*login/profile buttons*/}
-            <section className={styles.endContent}>
-                <div className={styles.theme__Button}>
-                    <Moon
-                        color={`${theme === 'dark' ? "var(--color-accent)" : "var(--color-text-secondary)"}`}
-                        size={24}
-                        strokeWidth={1}
-                        style={{ cursor: 'pointer' }}
-                        onClick={() => setTheme('dark')} />
-                    <Sun
-                        color={`${theme === 'white' ? "var(--color-accent)" : "var(--color-text-secondary)"}`}
-                        size={24}
-                        strokeWidth={1}
-                        style={{ cursor: 'pointer' }}
-                        onClick={() => setTheme('white')} />
+            {/* LEFT */}
+            <div className={styles.left}>
+                <div className={styles.logo} onClick={() => navigate({ to: "/" })}>
+                    AuctionHub
                 </div>
-                <section>
-                    {isAuthenticated ?
-                        <Button size="sm" variant="primary" type="button" onClick={() => handleNavAuthButtons("logout")}>
-                            Log out
-                        </Button> :
-                        <>
-                            <Button size="sm" variant="primary" type="button" onClick={() => handleNavAuthButtons("login")}>
-                                Log in
-                            </Button>
 
-                            <Button size="sm" variant="primary" type="button" onClick={() => handleNavAuthButtons("signup")}>
-                                Sign up
-                            </Button>
-                        </>}
-                </section>
-            </section>
+                {isAuthenticated && (
+                    <div className={styles.navLinks}>
+                        <span onClick={() => navigate({ to: "/dashboard" })}>Dashboard</span>
+                        <span onClick={() => navigate({ to: "/auctions" })}>Auctions</span>
+                        <span onClick={() => navigate({ to: "/applications" })}>Applications</span>
+                    </div>
+                )}
+            </div>
+
+            {/* RIGHT */}
+            <div className={styles.right}>
+                {isAuthenticated ? (
+                    <>
+                        <button className={styles.icon}>🔔</button>
+
+                        <div className={styles.avatar}>PP</div>
+
+                        <Button size="sm" variant="primary" onClick={handleLogout}>
+                            Logout
+                        </Button>
+                    </>
+                ) : (
+                    <>
+                        <Button
+                            size="sm"
+                            variant="primary"
+                            onClick={() => navigate({ to: "/login" })}
+                        >
+                            Log in
+                        </Button>
+
+                        <Button
+                            size="sm"
+                            variant="primary"
+                            onClick={() => navigate({ to: "/signup" })}
+                        >
+                            Sign up
+                        </Button>
+                    </>
+                )}
+            </div>
         </nav>
     )
 }

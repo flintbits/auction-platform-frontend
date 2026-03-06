@@ -1,6 +1,6 @@
 import { create } from "zustand";
 import type { AuthState, User } from "../../../features/auth/types/auth.types";
-import { apiFetch } from "../../../shared/api/client";
+import { apiGET } from "../../api/client";
 
 type AuthStore = AuthState & {
   init: () => Promise<void>;
@@ -18,7 +18,7 @@ export const useAuthStore = create<AuthStore>((set, get) => ({
     if (get().initialized) return;
 
     try {
-      const user: User = await apiFetch("/auth/me");
+      const user: User = await apiGET("/auth/me");
       set({
         user,
         isAuthenticated: true,

@@ -1,8 +1,8 @@
+import { useAuthStore } from '@app/store/auth/auth.store';
+import AuthLayout from '@features/auth/components/AuthLayout';
 import { createFileRoute, redirect } from '@tanstack/react-router';
-import { useAuthStore } from '../../app/store/auth/auth.store';
-import AuthLayout from '../../features/auth/components/AuthLayout';
 
-export const Route = createFileRoute('/_auth/login')({
+export const Route = createFileRoute('/_without-navbar/login')({
   beforeLoad: async () => {
     const { isAuthenticated, isOnboarded } = useAuthStore.getState();
 
@@ -14,6 +14,6 @@ export const Route = createFileRoute('/_auth/login')({
     }
     throw redirect({ to: "/dashboard" });
   },
-  component: AuthLayout,
+  component: () => <AuthLayout type="login" />,
 })
 

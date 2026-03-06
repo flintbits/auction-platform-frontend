@@ -15,7 +15,7 @@ export default function LoginForm({ }: Props) {
   return (
     <section className={styles.authcontainer}>
       <section>
-        <Typography as="h1" weight="bold" >Create Your Account</Typography>
+        <Typography as="h1" weight="bold" >Access Your Account</Typography>
         {LoginFormSchema.map((field) => {
           return <TextField
             key={field.id}
@@ -26,6 +26,8 @@ export default function LoginForm({ }: Props) {
             label={field.label}
             placeholder={field.placeholder}
             onChange={(e) => onChange(e, field.id)}
+            LeftIcon={field.leftIcon}
+            RightIcon={field.rightIcon}
             error={errors[field.id] ? true : false}
             helperText={errors[field.id] ? errors[field.id] : ""}
           />
@@ -36,7 +38,7 @@ export default function LoginForm({ }: Props) {
 
       <Button variant="primary" >Submit</Button>
 
-      <Typography as="p" weight="light" size="text-md">Dont have an Account? <Link to="/" className={styles.routelink}>Sign up</Link></Typography>
+      <Typography as="p" weight="light" size="text-md">Dont have an Account? <Link to="/signup" className={styles.routelink}>Sign up</Link></Typography>
     </section>
   )
 }

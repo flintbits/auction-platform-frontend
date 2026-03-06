@@ -20,8 +20,6 @@ export default function useFormEngine<T extends BaseField>(formSchema: T[]) {
   const validateFields = (value: string, fieldSchema: CompiledField<T>) => {
     let error = "";
 
-    console.log(validateFields)
-
     for (let validator of fieldSchema.fieldValidators!) {
       const result = validator(value, fieldSchema.id)
 
@@ -30,7 +28,6 @@ export default function useFormEngine<T extends BaseField>(formSchema: T[]) {
         break
       }
     }
-
     return error
   }
 

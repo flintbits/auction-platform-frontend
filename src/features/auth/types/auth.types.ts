@@ -13,16 +13,16 @@ export type AuthFieldType = {
 export type AuthFieldValidatorType = Omit<AuthFieldType, "fieldValidators"> & { fieldValidators?: ValidatorFnType[] }
 
 
-// export type AuthState = {
-//   isAuthenticated: boolean;
-//   isOnboarded: boolean;
-//   user: User | null;
-//   initialized: boolean;
-// }
+export type AuthState = {
+  isAuthenticated: boolean;
+  isOnboarded: boolean;
+  user: User | null;
+  initialized: boolean;
+}
 
-// export type User = {
-//   id: number;
-//   email: string;
-//   role: 'ORGANIZER' | 'TEAM_ADMIN';
-//   is_onboarded: boolean;
-// }
+export type User = {
+  id: number;
+  email: string;
+  role: 'ORGANIZER' | 'TEAM_ADMIN';
+  is_onboarded: boolean;
+}

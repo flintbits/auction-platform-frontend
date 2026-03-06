@@ -14,7 +14,6 @@ interface TextFieldProps extends React.InputHTMLAttributes<HTMLInputElement> {
     style?: React.CSSProperties
 }
 
-
 export const TextField = forwardRef<HTMLInputElement, TextFieldProps>(({ id, label, error = false, helperText, LeftIcon, RightIcon, style, className, ...props }, ref) => {
 
     return (

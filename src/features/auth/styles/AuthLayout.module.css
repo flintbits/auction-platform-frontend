@@ -8,4 +8,5 @@
 
 .authContainer {
   padding: var(--space-layout-2xl);
+  width: 620px;
 }

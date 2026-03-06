@@ -31,24 +31,3 @@ h6 {
 p {
   font-family: var(--font-family);
 }
-
-/* ---------- Forms ---------- */
-
-/* input:not([type="checkbox"]):not([type="radio"]),
-select,
-textarea {
-  width: 100%;
-  height: clamp(44px, 6vh, 52px);
-  padding: var(--space-sm);
-  font-size: var(--font-size-sm);
-  font-weight: var(--font-weight-thin);
-  border: none;
-  border-bottom: 1px solid var(--color-border);
-  background-color: var(--color-surface);
-  color: var(--color-text-primary);
-  letter-spacing: var(--letter-spacing-wide);
-}
-
-input::placeholder {
-  color: var(--color-text-muted);
-} */

@@ -1,6 +1,6 @@
-// import { setAuthState } from "../../auth/authStore";
-import { useAuthStore } from "../../app/store/auth/auth.store";
-import { apiFetch } from "./client";
+import { apiPOST } from "@app/api/client";
+import { useAuthStore } from "@app/store/auth/auth.store";
+
 
 type LoginResponse = {
   token: string,
@@ -13,8 +13,7 @@ type LoginResponse = {
 }
 
 export async function login(email: string, password: string) {
-  const data: LoginResponse = await apiFetch("/auth/login", {
-    method: "POST",
+  const data: LoginResponse = await apiPOST("/auth/login", {
     body: JSON.stringify({ email, password })
   });
 
@@ -27,7 +26,7 @@ export async function login(email: string, password: string) {
 
 export async function logout() {
   useAuthStore.getState().logout();
-  await apiFetch("/auth/logout", { method: "POST" });
+  await apiPOST("/auth/logout", { method: "POST" });
 }
 
 

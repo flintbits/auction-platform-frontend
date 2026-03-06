@@ -9,20 +9,25 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as WithoutNavbarRouteImport } from './routes/_without-navbar'
+import { Route as WithSidebarRouteImport } from './routes/_with-sidebar'
 import { Route as WithNavbarRouteImport } from './routes/_with-navbar'
-import { Route as AuthRouteImport } from './routes/_auth'
 import { Route as WithNavbarIndexRouteImport } from './routes/_with-navbar/index'
-import { Route as WithNavbarOnboardingRouteImport } from './routes/_with-navbar/onboarding'
-import { Route as WithNavbarDashboardRouteImport } from './routes/_with-navbar/dashboard'
-import { Route as AuthSignupRouteImport } from './routes/_auth/signup'
-import { Route as AuthLoginRouteImport } from './routes/_auth/login'
+import { Route as WithoutNavbarSignupRouteImport } from './routes/_without-navbar/signup'
+import { Route as WithoutNavbarOnboardingRouteImport } from './routes/_without-navbar/onboarding'
+import { Route as WithoutNavbarLoginRouteImport } from './routes/_without-navbar/login'
+import { Route as WithSidebarDashboardRouteImport } from './routes/_with-sidebar/dashboard'
 
-const WithNavbarRoute = WithNavbarRouteImport.update({
-  id: '/_with-navbar',
+const WithoutNavbarRoute = WithoutNavbarRouteImport.update({
+  id: '/_without-navbar',
   getParentRoute: () => rootRouteImport,
 } as any)
-const AuthRoute = AuthRouteImport.update({
-  id: '/_auth',
+const WithSidebarRoute = WithSidebarRouteImport.update({
+  id: '/_with-sidebar',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const WithNavbarRoute = WithNavbarRouteImport.update({
+  id: '/_with-navbar',
   getParentRoute: () => rootRouteImport,
 } as any)
 const WithNavbarIndexRoute = WithNavbarIndexRouteImport.update({
@@ -30,86 +35,96 @@ const WithNavbarIndexRoute = WithNavbarIndexRouteImport.update({
   path: '/',
   getParentRoute: () => WithNavbarRoute,
 } as any)
-const WithNavbarOnboardingRoute = WithNavbarOnboardingRouteImport.update({
-  id: '/onboarding',
-  path: '/onboarding',
-  getParentRoute: () => WithNavbarRoute,
-} as any)
-const WithNavbarDashboardRoute = WithNavbarDashboardRouteImport.update({
-  id: '/dashboard',
-  path: '/dashboard',
-  getParentRoute: () => WithNavbarRoute,
-} as any)
-const AuthSignupRoute = AuthSignupRouteImport.update({
+const WithoutNavbarSignupRoute = WithoutNavbarSignupRouteImport.update({
   id: '/signup',
   path: '/signup',
-  getParentRoute: () => AuthRoute,
+  getParentRoute: () => WithoutNavbarRoute,
 } as any)
-const AuthLoginRoute = AuthLoginRouteImport.update({
+const WithoutNavbarOnboardingRoute = WithoutNavbarOnboardingRouteImport.update({
+  id: '/onboarding',
+  path: '/onboarding',
+  getParentRoute: () => WithoutNavbarRoute,
+} as any)
+const WithoutNavbarLoginRoute = WithoutNavbarLoginRouteImport.update({
   id: '/login',
   path: '/login',
-  getParentRoute: () => AuthRoute,
+  getParentRoute: () => WithoutNavbarRoute,
+} as any)
+const WithSidebarDashboardRoute = WithSidebarDashboardRouteImport.update({
+  id: '/dashboard',
+  path: '/dashboard',
+  getParentRoute: () => WithSidebarRoute,
 } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof WithNavbarIndexRoute
-  '/login': typeof AuthLoginRoute
-  '/signup': typeof AuthSignupRoute
-  '/dashboard': typeof WithNavbarDashboardRoute
-  '/onboarding': typeof WithNavbarOnboardingRoute
+  '/dashboard': typeof WithSidebarDashboardRoute
+  '/login': typeof WithoutNavbarLoginRoute
+  '/onboarding': typeof WithoutNavbarOnboardingRoute
+  '/signup': typeof WithoutNavbarSignupRoute
 }
 export interface FileRoutesByTo {
   '/': typeof WithNavbarIndexRoute
-  '/login': typeof AuthLoginRoute
-  '/signup': typeof AuthSignupRoute
-  '/dashboard': typeof WithNavbarDashboardRoute
-  '/onboarding': typeof WithNavbarOnboardingRoute
+  '/dashboard': typeof WithSidebarDashboardRoute
+  '/login': typeof WithoutNavbarLoginRoute
+  '/onboarding': typeof WithoutNavbarOnboardingRoute
+  '/signup': typeof WithoutNavbarSignupRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
-  '/_auth': typeof AuthRouteWithChildren
   '/_with-navbar': typeof WithNavbarRouteWithChildren
-  '/_auth/login': typeof AuthLoginRoute
-  '/_auth/signup': typeof AuthSignupRoute
-  '/_with-navbar/dashboard': typeof WithNavbarDashboardRoute
-  '/_with-navbar/onboarding': typeof WithNavbarOnboardingRoute
+  '/_with-sidebar': typeof WithSidebarRouteWithChildren
+  '/_without-navbar': typeof WithoutNavbarRouteWithChildren
+  '/_with-sidebar/dashboard': typeof WithSidebarDashboardRoute
+  '/_without-navbar/login': typeof WithoutNavbarLoginRoute
+  '/_without-navbar/onboarding': typeof WithoutNavbarOnboardingRoute
+  '/_without-navbar/signup': typeof WithoutNavbarSignupRoute
   '/_with-navbar/': typeof WithNavbarIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/login' | '/signup' | '/dashboard' | '/onboarding'
+  fullPaths: '/' | '/dashboard' | '/login' | '/onboarding' | '/signup'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/login' | '/signup' | '/dashboard' | '/onboarding'
+  to: '/' | '/dashboard' | '/login' | '/onboarding' | '/signup'
   id:
     | '__root__'
-    | '/_auth'
     | '/_with-navbar'
-    | '/_auth/login'
-    | '/_auth/signup'
-    | '/_with-navbar/dashboard'
-    | '/_with-navbar/onboarding'
+    | '/_with-sidebar'
+    | '/_without-navbar'
+    | '/_with-sidebar/dashboard'
+    | '/_without-navbar/login'
+    | '/_without-navbar/onboarding'
+    | '/_without-navbar/signup'
     | '/_with-navbar/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
-  AuthRoute: typeof AuthRouteWithChildren
   WithNavbarRoute: typeof WithNavbarRouteWithChildren
+  WithSidebarRoute: typeof WithSidebarRouteWithChildren
+  WithoutNavbarRoute: typeof WithoutNavbarRouteWithChildren
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/_without-navbar': {
+      id: '/_without-navbar'
+      path: ''
+      fullPath: '/'
+      preLoaderRoute: typeof WithoutNavbarRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/_with-sidebar': {
+      id: '/_with-sidebar'
+      path: ''
+      fullPath: '/'
+      preLoaderRoute: typeof WithSidebarRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/_with-navbar': {
       id: '/_with-navbar'
       path: ''
       fullPath: '/'
       preLoaderRoute: typeof WithNavbarRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/_auth': {
-      id: '/_auth'
-      path: ''
-      fullPath: '/'
-      preLoaderRoute: typeof AuthRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/_with-navbar/': {
@@ -119,58 +134,42 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof WithNavbarIndexRouteImport
       parentRoute: typeof WithNavbarRoute
     }
-    '/_with-navbar/onboarding': {
-      id: '/_with-navbar/onboarding'
-      path: '/onboarding'
-      fullPath: '/onboarding'
-      preLoaderRoute: typeof WithNavbarOnboardingRouteImport
-      parentRoute: typeof WithNavbarRoute
-    }
-    '/_with-navbar/dashboard': {
-      id: '/_with-navbar/dashboard'
-      path: '/dashboard'
-      fullPath: '/dashboard'
-      preLoaderRoute: typeof WithNavbarDashboardRouteImport
-      parentRoute: typeof WithNavbarRoute
-    }
-    '/_auth/signup': {
-      id: '/_auth/signup'
+    '/_without-navbar/signup': {
+      id: '/_without-navbar/signup'
       path: '/signup'
       fullPath: '/signup'
-      preLoaderRoute: typeof AuthSignupRouteImport
-      parentRoute: typeof AuthRoute
+      preLoaderRoute: typeof WithoutNavbarSignupRouteImport
+      parentRoute: typeof WithoutNavbarRoute
     }
-    '/_auth/login': {
-      id: '/_auth/login'
+    '/_without-navbar/onboarding': {
+      id: '/_without-navbar/onboarding'
+      path: '/onboarding'
+      fullPath: '/onboarding'
+      preLoaderRoute: typeof WithoutNavbarOnboardingRouteImport
+      parentRoute: typeof WithoutNavbarRoute
+    }
+    '/_without-navbar/login': {
+      id: '/_without-navbar/login'
       path: '/login'
       fullPath: '/login'
-      preLoaderRoute: typeof AuthLoginRouteImport
-      parentRoute: typeof AuthRoute
+      preLoaderRoute: typeof WithoutNavbarLoginRouteImport
+      parentRoute: typeof WithoutNavbarRoute
+    }
+    '/_with-sidebar/dashboard': {
+      id: '/_with-sidebar/dashboard'
+      path: '/dashboard'
+      fullPath: '/dashboard'
+      preLoaderRoute: typeof WithSidebarDashboardRouteImport
+      parentRoute: typeof WithSidebarRoute
     }
   }
 }
 
-interface AuthRouteChildren {
-  AuthLoginRoute: typeof AuthLoginRoute
-  AuthSignupRoute: typeof AuthSignupRoute
-}
-
-const AuthRouteChildren: AuthRouteChildren = {
-  AuthLoginRoute: AuthLoginRoute,
-  AuthSignupRoute: AuthSignupRoute,
-}
-
-const AuthRouteWithChildren = AuthRoute._addFileChildren(AuthRouteChildren)
-
 interface WithNavbarRouteChildren {
-  WithNavbarDashboardRoute: typeof WithNavbarDashboardRoute
-  WithNavbarOnboardingRoute: typeof WithNavbarOnboardingRoute
   WithNavbarIndexRoute: typeof WithNavbarIndexRoute
 }
 
 const WithNavbarRouteChildren: WithNavbarRouteChildren = {
-  WithNavbarDashboardRoute: WithNavbarDashboardRoute,
-  WithNavbarOnboardingRoute: WithNavbarOnboardingRoute,
   WithNavbarIndexRoute: WithNavbarIndexRoute,
 }
 
@@ -178,9 +177,38 @@ const WithNavbarRouteWithChildren = WithNavbarRoute._addFileChildren(
   WithNavbarRouteChildren,
 )
 
+interface WithSidebarRouteChildren {
+  WithSidebarDashboardRoute: typeof WithSidebarDashboardRoute
+}
+
+const WithSidebarRouteChildren: WithSidebarRouteChildren = {
+  WithSidebarDashboardRoute: WithSidebarDashboardRoute,
+}
+
+const WithSidebarRouteWithChildren = WithSidebarRoute._addFileChildren(
+  WithSidebarRouteChildren,
+)
+
+interface WithoutNavbarRouteChildren {
+  WithoutNavbarLoginRoute: typeof WithoutNavbarLoginRoute
+  WithoutNavbarOnboardingRoute: typeof WithoutNavbarOnboardingRoute
+  WithoutNavbarSignupRoute: typeof WithoutNavbarSignupRoute
+}
+
+const WithoutNavbarRouteChildren: WithoutNavbarRouteChildren = {
+  WithoutNavbarLoginRoute: WithoutNavbarLoginRoute,
+  WithoutNavbarOnboardingRoute: WithoutNavbarOnboardingRoute,
+  WithoutNavbarSignupRoute: WithoutNavbarSignupRoute,
+}
+
+const WithoutNavbarRouteWithChildren = WithoutNavbarRoute._addFileChildren(
+  WithoutNavbarRouteChildren,
+)
+
 const rootRouteChildren: RootRouteChildren = {
-  AuthRoute: AuthRouteWithChildren,
   WithNavbarRoute: WithNavbarRouteWithChildren,
+  WithSidebarRoute: WithSidebarRouteWithChildren,
+  WithoutNavbarRoute: WithoutNavbarRouteWithChildren,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

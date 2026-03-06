@@ -1,8 +1,9 @@
-import TestComponent from "../../tests/TestComponent";
+import { Link } from "@tanstack/react-router";
+
 
 
 export default function Home() {
     return (
-        <div><TestComponent /></div>
+        <div><Link to="/dashboard">Dashboard</Link></div>
     )
 }

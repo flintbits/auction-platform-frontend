@@ -3,7 +3,8 @@ export type ValidatorFnType = (value: string, fieldName: string) => string | nul
 
 export type FieldValidatorType =
   | { type: "required" }
-  | { type: "minLength", constraints: { minLength: 8 } }
+  | { type: "minLength", constraints: { minLength: number } }
+  | { type: "maxLength", constraints: { minLength: number } }
 
 
 export type BaseField = {
@@ -14,6 +15,6 @@ export type BaseField = {
 
 export type ValidatorFactory = (constraints?: any) => ValidatorFnType
 
-export type MinLengthConstraints = {
+export type LengthConstraints = {
   minLength: number
 }
