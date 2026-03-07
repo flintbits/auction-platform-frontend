@@ -1,0 +1,19 @@
+.dividerHorizontal {
+  border: none;
+  height: 1px;
+  background: var(--color-text-muted);
+  width: 100%;
+  margin: 0;
+  opacity: 0.3;
+  flex-shrink: 0;
+}
+
+.dividerVertical {
+  border: none;
+  width: 1px;
+  background: var(--color-text-muted);
+  height: 100%;
+  margin: 0;
+  opacity: 0.3;
+  flex-shrink: 0;
+}

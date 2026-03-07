@@ -1,13 +1,14 @@
 import { Button } from "@shared/ui/Button/Button"
 import { useNavigate } from "@tanstack/react-router"
-import { logout } from "../../shared/api/auth.service"
+// import { logout } from "../../shared/api/auth.service"
+import { useAuthStore } from "@app/store/auth/auth.store"
+import { logout } from "../../features/auth/services/auth.service"
 import styles from "./Navbar.module.css"
 
 export default function NavBar() {
     const navigate = useNavigate()
-    // const isAuthenticated = useAuthStore((s) => s.isAuthenticated)
+    const isAuthenticated = useAuthStore((s) => s.isAuthenticated)
 
-    const isAuthenticated = false
 
     const handleLogout = async () => {
         await logout()
@@ -25,8 +26,8 @@ export default function NavBar() {
                 {isAuthenticated && (
                     <div className={styles.navLinks}>
                         <span onClick={() => navigate({ to: "/dashboard" })}>Dashboard</span>
-                        <span onClick={() => navigate({ to: "/auctions" })}>Auctions</span>
-                        <span onClick={() => navigate({ to: "/applications" })}>Applications</span>
+                        {/* <span onClick={() => navigate({ to: "/auctions" })}>Auctions</span>
+                        <span onClick={() => navigate({ to: "/applications" })}>Applications</span> */}
                     </div>
                 )}
             </div>
@@ -35,9 +36,11 @@ export default function NavBar() {
             <div className={styles.right}>
                 {isAuthenticated ? (
                     <>
-                        <button className={styles.icon}>🔔</button>
+                        {/* <button className={styles.icon}>🔔</button> */}
 
-                        <div className={styles.avatar}>PP</div>
+                        <div className={styles.avatar}>
+                            <img className={styles.avatar} src="https://cdn.jsdelivr.net/gh/alohe/avatars/png/teams_8.png" alt="profile" />
+                        </div>
 
                         <Button size="sm" variant="primary" onClick={handleLogout}>
                             Logout

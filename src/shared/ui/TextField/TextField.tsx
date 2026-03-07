@@ -1,3 +1,4 @@
+import { Link } from "@tanstack/react-router";
 import type { LucideIcon } from "lucide-react";
 import type React from "react";
 import { forwardRef } from "react";
@@ -6,6 +7,7 @@ import styles from './TextField.module.css';
 
 interface TextFieldProps extends React.InputHTMLAttributes<HTMLInputElement> {
     label?: string
+    isPassword?: boolean
     error?: boolean
     helperText?: string
     LeftIcon?: LucideIcon
@@ -14,11 +16,20 @@ interface TextFieldProps extends React.InputHTMLAttributes<HTMLInputElement> {
     style?: React.CSSProperties
 }
 
-export const TextField = forwardRef<HTMLInputElement, TextFieldProps>(({ id, label, error = false, helperText, LeftIcon, RightIcon, style, className, ...props }, ref) => {
+export const TextField = forwardRef<HTMLInputElement, TextFieldProps>(({ id, label, isPassword, error = false, helperText, LeftIcon, RightIcon, style, className, ...props }, ref) => {
 
     return (
         <section className={styles.textArea} style={style}>
-            {label && <label htmlFor="email">{label}</label>}
+            {label &&
+                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline" }}>
+                    <label htmlFor="email">{label}</label>
+                    {isPassword &&
+                        <Typography as="p" weight="light" size="text-xs">
+                            <Link to="/" style={{ textDecoration: "none", color: "var(--color-accent)" }}>Forgot Password?</Link>
+                        </Typography>
+                    }
+                </div>
+            }
 
             <div className={`${styles.inputContainer} ${error ? styles.error : ""}`}>
 
@@ -38,7 +49,13 @@ export const TextField = forwardRef<HTMLInputElement, TextFieldProps>(({ id, lab
                 {RightIcon && <RightIcon className={styles.iconRight} />}
             </div>
 
-            {error && <Typography className={error ? styles.helperError : ""} as="p" weight="light" size="text-xs">{helperText}</Typography>}
+            <Typography
+                as="p"
+                className={error ? styles.helperError : ""}
+                style={{ visibility: error ? "visible" : "hidden", minHeight: 18 }}
+                weight="light"
+                size="text-xs"
+            >{helperText}</Typography>
         </section >
     )
 })

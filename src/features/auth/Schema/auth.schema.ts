@@ -9,7 +9,7 @@ export const LoginFormSchema: (AuthFieldType & { leftIcon?: LucideIcon, rightIco
     label: "Email",
     type: "email",
     placeholder: "Enter your email",
-    rightIcon: Mail,
+    leftIcon: Mail,
     fieldValidators: [
       { type: "required" }
     ]
@@ -20,6 +20,7 @@ export const LoginFormSchema: (AuthFieldType & { leftIcon?: LucideIcon, rightIco
     type: "password",
     placeholder: "Enter your password",
     leftIcon: Key,
+    isPassword: true,
     fieldValidators: [
       { type: "required" },
       { type: "minLength", constraints: { minLength: 8 } },

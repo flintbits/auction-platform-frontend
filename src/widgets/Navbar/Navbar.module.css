@@ -59,7 +59,7 @@
   height: 32px;
 
   border-radius: 50%;
-  background: var(--color-accent);
+  /* background: var(--color-accent); */
 
   display: flex;
   align-items: center;

@@ -17,7 +17,7 @@ export default function useFormEngine<T extends BaseField>(formSchema: T[]) {
     return compiledSchema.find((field) => field.id === fieldId)
   }
 
-  const validateFields = (value: string, fieldSchema: CompiledField<T>) => {
+  const validateField = (value: string, fieldSchema: CompiledField<T>) => {
     let error = "";
 
     for (let validator of fieldSchema.fieldValidators!) {
@@ -39,10 +39,27 @@ export default function useFormEngine<T extends BaseField>(formSchema: T[]) {
 
     if (!fieldSchema) return
 
-    const error = validateFields(val, fieldSchema);
+    const error = validateField(val, fieldSchema);
 
     setErrors((prev) => ({ ...prev, [fieldId]: error }))
   }
 
-  return { formData, onChange, errors }
+  const checkAllFields = (): Record<string, string> => {
+    let newErrors: Record<string, string> = {}
+    for (let field of compiledSchema) {
+      const fieldId = field.id
+      const error = validateField(formData[fieldId], field)
+
+      if (error) {
+        newErrors[fieldId] = error
+      }
+    }
+
+    setErrors(newErrors)
+
+    return newErrors
+  }
+
+
+  return { formData, onChange, checkAllFields, errors }
 }

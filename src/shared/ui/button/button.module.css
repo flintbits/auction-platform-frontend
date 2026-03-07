@@ -39,8 +39,8 @@
 /* ================= Variants ================= */
 
 .primary {
-  background-color: var(--theme-accent);
-  color: var(--color-text-secondary);
+  background-color: var(--color-bg-muted);
+  color: var(--color-text-white);
 }
 
 .primary:focus-visible {
