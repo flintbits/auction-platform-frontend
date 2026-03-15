@@ -31,8 +31,7 @@ export default function useFormEngine<T extends BaseField>(formSchema: T[]) {
     return error
   }
 
-  const onChange = (e: React.ChangeEvent<HTMLInputElement>, fieldId: string) => {
-    const val = e.target.value;
+  const onChange = (val: string, fieldId: string) => {
     setFormData((prev) => ({ ...prev, [fieldId]: val }));
 
     const fieldSchema = getFieldSchema(fieldId);

@@ -2,6 +2,7 @@ import useFormEngine from "@app/hooks/useFormEngine";
 import { useAuthStore } from "@app/store/auth/auth.store";
 import { Button } from "@shared/ui/Button/Button";
 import Divider from "@shared/ui/Divider/Divider";
+import Dropdown from "@shared/ui/Dropdown/Dropdown";
 import { TextField } from "@shared/ui/TextField/TextField";
 import Typography from "@shared/ui/Typography/Typography";
 import { useMutation } from "@tanstack/react-query";
@@ -66,25 +67,37 @@ export default function AuthForm({ schema, formType }: AuthFormProps) {
 
   return (
     <section className={styles.authcontainer}>
-      <p>use: test5@mail.com and 12345678</p>
-      <Typography as="h1" weight="bold" >Access Your Account</Typography>
+      {isLogin && <p>use: test5@mail.com and 12345678</p>}
+      <Typography as="h1" weight="bold" >{isLogin ? "Access Your Account" : "Create Your Account"}</Typography>
       <Divider />
       <form onSubmit={handleLogin} className={styles.form}>
         {schema.map((field) => {
-          return <TextField
-            key={field.id}
-            id={field.id}
-            value={formData[field.id] ?? ""}
-            type={field.type}
-            label={field.label}
-            placeholder={field.placeholder}
-            isPassword={field.isPassword ? true : false}
-            onChange={(e) => onChange(e, field.id)}
-            LeftIcon={field.leftIcon}
-            RightIcon={field.rightIcon}
-            error={errors[field.id] ? true : false}
-            helperText={errors[field.id] ? errors[field.id] : ""}
-          />
+          const fieldType = field.type
+          return fieldType === "dropdown" ?
+            <Dropdown
+              key={field.id}
+              id={field.id}
+              onChange={(value) => onChange(value, field.id)}
+              label={field.label}
+              options={field.options ?? []}
+              error={errors[field.id] ? true : false}
+              helperText={errors[field.id] ? errors[field.id] : ""}
+            />
+            :
+            <TextField
+              key={field.id}
+              id={field.id}
+              value={formData[field.id] ?? ""}
+              type={field.type}
+              label={field.label}
+              placeholder={field.placeholder}
+              isPassword={field.isPassword ? true : false}
+              onChange={(e) => onChange(e.target.value, field.id)}
+              LeftIcon={field.leftIcon}
+              RightIcon={field.rightIcon}
+              error={errors[field.id] ? true : false}
+              helperText={errors[field.id] ? errors[field.id] : ""}
+            />
         })}
 
         <Button variant="primary" type="submit">Submit</Button>

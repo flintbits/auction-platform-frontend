@@ -31,6 +31,20 @@ export const LoginFormSchema: (AuthFieldType & { leftIcon?: LucideIcon, rightIco
 
 export const SignupFormSchema: (AuthFieldType & { leftIcon?: LucideIcon })[] = [
   {
+    id: "role",
+    label: "Role",
+    type: "dropdown",
+    placeholder: "Select your role",
+    options: [
+      { label: "Organizer", value: "ORGANIZER" },
+      { label: "Team Admin", value: "TEAM_ADMIN" }
+    ],
+    // leftIcon: Mail,
+    fieldValidators: [
+      { type: "required" }
+    ]
+  },
+  {
     id: "email",
     label: "Email",
     type: "email",

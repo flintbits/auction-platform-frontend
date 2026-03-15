@@ -22,7 +22,7 @@ export const TextField = forwardRef<HTMLInputElement, TextFieldProps>(({ id, lab
         <section className={styles.textArea} style={style}>
             {label &&
                 <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline" }}>
-                    <label htmlFor="email">{label}</label>
+                    <label htmlFor={id}>{label}</label>
                     {isPassword &&
                         <Typography as="p" weight="light" size="text-xs">
                             <Link to="/" style={{ textDecoration: "none", color: "var(--color-accent)" }}>Forgot Password?</Link>

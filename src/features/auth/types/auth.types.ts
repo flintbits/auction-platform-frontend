@@ -5,6 +5,7 @@ export type AuthFieldType = {
   id: string,
   label: string,
   type: string,
+  options?: any[]
   placeholder: string
   isPassword?: Boolean | undefined
   fieldValidators: FieldValidatorType[]
