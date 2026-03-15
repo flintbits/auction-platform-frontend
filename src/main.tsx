@@ -11,6 +11,7 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import '../src/shared/styles/global.css';
 import '../src/shared/styles/themes.css';
 import '../src/shared/styles/tokens.css';
+import { GlobalLoader } from './widgets/GlobalLoader/GlobalLoader';
 
 
 
@@ -27,6 +28,7 @@ async function bootstrap() {
       <ErrorBoundary>
         <QueryClientProvider client={queryClient}>
           <ThemeProvider>
+            <GlobalLoader />
             <RouterProvider router={router} />
           </ThemeProvider>
         </QueryClientProvider>
