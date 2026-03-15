@@ -12,17 +12,29 @@ type LoginResponse = {
   }
 }
 
-export async function login(email: string, password: string) {
+export interface AuthInput {
+  email: string
+  password: string
+  role?: "ORGANIZER" | "TEAM_ADMIN"
+}
+
+
+
+export async function login({ email, password }: AuthInput) {
   const data: LoginResponse = await apiPOST("/auth/login", {
     body: JSON.stringify({ email, password })
   });
 
-  useAuthStore.getState().login(data.user);
-
-  return data.user
+  return data
 }
 
-//export async function register() {}
+export async function signup({ email, password, role }: AuthInput) {
+  const data: LoginResponse = await apiPOST("/auth/register", {
+    body: JSON.stringify({ email, password, role })
+  })
+
+  return data
+}
 
 export async function logout() {
   useAuthStore.getState().logout();

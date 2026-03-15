@@ -7,7 +7,7 @@ type CompiledField<T extends BaseField> =
   Omit<T, "fieldValidators"> & { fieldValidators: ValidatorFnType[] }
 
 export default function useFormEngine<T extends BaseField>(formSchema: T[]) {
-  const [formData, setFormData] = useState<Record<string, string>>({})
+  const [formData, setFormData] = useState<Record<string, any>>({})
   const [errors, setErrors] = useState<Record<string, string>>({})
 
   //returns a new schema witht the field level validators attached

@@ -1,17 +1,18 @@
+import { useMemo } from 'react';
+import { LoginFormSchema, SignupFormSchema } from '../Schema/auth.schema';
 import styles from '../styles/AuthLayout.module.css';
-import LoginForm from './LoginForm';
-import SignupForm from './SignupForm';
+import AuthForm from './AuthForm';
 
 type AuthLayoutProps = {
   type: string
 }
 
 export default function AuthLayout({ type }: AuthLayoutProps) {
+  const schema = useMemo(() => type === 'signup' ? SignupFormSchema : LoginFormSchema, [type])
   return (
     <section className={styles.auth}>
       <section className={styles.authContainer}>
-        {type === "login" && <LoginForm />}
-        {type === "signup" && <SignupForm />}
+        <AuthForm formType={type} schema={schema} key={type} />
       </section>
     </section>
   )

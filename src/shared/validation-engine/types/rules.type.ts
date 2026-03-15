@@ -9,7 +9,7 @@ export type FieldValidatorType =
 
 export type BaseField = {
   id: string
-  fieldValidators: FieldValidatorType[]
+  fieldValidators?: FieldValidatorType[]
 }
 
 

@@ -9,7 +9,7 @@ export async function request(endpoint: string, options: RequestInit & { retry?:
   }
 
   //seperate retry, timeout and request headers
-  const { retry = 0, timeOut = 1000 * 30, ...fetchOptions } = options
+  const { retry = 1, timeOut = 1000 * 30, ...fetchOptions } = options
 
   const controller = new AbortController()
   const timeoutId = setTimeout(() => controller.abort(), timeOut)
